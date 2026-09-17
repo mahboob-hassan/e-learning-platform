@@ -36,7 +36,9 @@ function Navbar() {
               <NavLink
                 to={item.to}
                 end={item.to === "/"}
-                className={(props) => `${linkClassName(props)} text-xl lg:text-2xl`}
+                className={(props) =>
+                  `${linkClassName(props)} text-xl lg:text-2xl`
+                }
               >
                 {item.label}
               </NavLink>
@@ -47,7 +49,9 @@ function Navbar() {
         <button
           type="button"
           className="rounded-md p-2 text-gray-700 transition-colors hover:bg-pink-50 hover:text-pink-600 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600 md:hidden"
-          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-label={
+            isMenuOpen ? "Close navigation menu" : "Open navigation menu"
+          }
           aria-expanded={isMenuOpen}
           aria-controls="mobile-navigation"
           onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
@@ -57,7 +61,10 @@ function Navbar() {
       </div>
 
       {isMenuOpen && (
-        <div id="mobile-navigation" className="border-t border-gray-100 bg-white shadow-md md:hidden">
+        <div
+          id="mobile-navigation"
+          className="border-t border-gray-100 bg-white shadow-md md:hidden"
+        >
           <ul className="mx-auto flex max-w-7xl flex-col px-4 py-3 sm:px-6">
             {navItems.map((item) => (
               <li key={item.to}>
