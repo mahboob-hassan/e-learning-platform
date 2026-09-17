@@ -34,7 +34,7 @@ export default function AnimatedText({
         ? words.map((word, wordIndex) => (
             <span
               key={`word-${wordIndex}`}
-              className="inline-block whitespace-nowrap"
+              className="mr-[0.25em] inline-block whitespace-nowrap"
             >
               {word.split("").map((letter, letterIndex) => {
                 const index =
@@ -54,7 +54,6 @@ export default function AnimatedText({
                   </motion.span>
                 );
               })}
-              {wordIndex < words.length - 1 && " "}
             </span>
           ))
         : words.map((word, index) => (

@@ -2,8 +2,8 @@ import Navbar from "./components/Navbar";
 import About from "./pages/About";
 import Home from "./pages/Home";
 import Courses from "./pages/Courses";
+import Contact from "./pages/Contact";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Contact } from "lucide-react";
 
 function App() {
   return (
