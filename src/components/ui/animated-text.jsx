@@ -1,6 +1,4 @@
-"use client";
-
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 export default function AnimatedText({
   text,
@@ -14,54 +12,62 @@ export default function AnimatedText({
   animateY = 0,
   animateOpacity = 1,
 }) {
-  const letters = text.split("");
   const words = text.split(" ");
+  const shouldReduceMotion = useReducedMotion();
 
-  const animation = {
-    y: [initialY, animateY, animateY, initialY],
-    opacity: [initialOpacity, animateOpacity, animateOpacity, initialOpacity],
-  };
-
-  const transition = {
-    duration: duration * 3,
-    delay: delay,
-    repeat: Infinity,
-    repeatDelay: 2,
+  const getTransition = (index) => ({
+    duration,
+    delay: delay + index * staggerDelay,
+    repeat: shouldReduceMotion ? 0 : Infinity,
+    repeatDelay: 1.5,
     ease: "easeInOut",
-  };
+  });
+
+  const getAnimation = () => ({
+    y: shouldReduceMotion ? animateY : [animateY, animateY - 6, animateY],
+    opacity: animateOpacity,
+  });
 
   return (
-    <div className={className}>
+    <span className={`block ${className}`}>
       {animationType === "letters"
-        ? letters.map((char, index) => (
-            <motion.span
-              key={`letter-${index}`}
-              className="inline-block"
-              style={{
-                whiteSpace: char === " " ? "pre" : "normal",
-              }}
-              animate={animation}
-              transition={{
-                ...transition,
-                delay: delay + index * staggerDelay,
-              }}
+        ? words.map((word, wordIndex) => (
+            <span
+              key={`word-${wordIndex}`}
+              className="inline-block whitespace-nowrap"
             >
-              {char}
-            </motion.span>
+              {word.split("").map((letter, letterIndex) => {
+                const index =
+                  words.slice(0, wordIndex).join("").length +
+                  wordIndex +
+                  letterIndex;
+
+                return (
+                  <motion.span
+                    key={`letter-${index}`}
+                    className="inline-block"
+                    initial={{ y: initialY, opacity: initialOpacity }}
+                    animate={getAnimation()}
+                    transition={getTransition(index)}
+                  >
+                    {letter}
+                  </motion.span>
+                );
+              })}
+              {wordIndex < words.length - 1 && " "}
+            </span>
           ))
         : words.map((word, index) => (
             <motion.span
               key={`word-${index}`}
-              className="mr-2 inline-block"
-              animate={animation}
-              transition={{
-                ...transition,
-                delay: delay + index * staggerDelay,
-              }}
+              className="mr-2 inline-block whitespace-nowrap"
+              initial={{ y: initialY, opacity: initialOpacity }}
+              animate={getAnimation()}
+              transition={getTransition(index)}
             >
               {word}
             </motion.span>
           ))}
-    </div>
+    </span>
   );
 }

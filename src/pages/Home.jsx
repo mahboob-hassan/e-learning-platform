@@ -7,7 +7,7 @@ function Home() {
       <div className="mx-auto grid w-full max-w-6xl grid-cols-1 items-center gap-8 md:grid-cols-2 lg:gap-16">
         {/* Left - Hero Content */}
         <div className="text-center md:text-left">
-          <div className="mb-4 font-serif text-3xl leading-tight text-gray-900 sm:text-5xl lg:text-6xl">
+          <h1 className="mb-4 font-serif text-3xl leading-tight text-gray-900 sm:text-5xl lg:text-6xl">
             <AnimatedText
               text="Learn new skills, anytime,"
               animationType="letters"
@@ -21,7 +21,7 @@ function Home() {
               staggerDelay={0.04}
               duration={1}
             />
-          </div>
+          </h1>
 
           <p className="mx-auto mb-6 max-w-xl text-base leading-relaxed text-gray-600 sm:mb-8 sm:text-lg md:mx-0">
             Explore hundreds of courses taught by industry experts and grow your
