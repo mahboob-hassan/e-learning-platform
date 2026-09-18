@@ -28,7 +28,7 @@ function Home() {
             career at your own pace.
           </p>
 
-          <button className="rounded-full bg-pink-600 px-6 py-3 text-base font-serif text-white transition-colors hover:bg-pink-700 sm:text-lg">
+          <button className="rounded-full bg-pink-600 px-6 py-3 text-base font-semibold text-white transition-colors hover:bg-pink-700 sm:text-lg">
             Browse Courses
           </button>
         </div>
